@@ -7,46 +7,32 @@ const buttons = document.querySelectorAll('.number');
 const options = document.querySelectorAll('.options');
 const input = document.querySelector('#output');
 const equal = document.querySelector('.equal');
-let firstNumber = 0;
-let secondNumber = Number.parseInt(output.value)
+const clear = document.querySelector('.clear')
 
-//Проверка на роботу кнопок
+let resetAfterOperation = false
+    //Проверка на роботу кнопок
 options.forEach(option => {
     option.addEventListener('click', function() {
         firstNumber = Number.parseInt(output.value)
         option = event.currentTarget.dataset.action;
+        resetAfterOperation = true;
+
     });
 });
 buttons.forEach(button => {
     button.addEventListener('click', function() {
-
         let value = event.currentTarget.textContent
-        if (true) {
-            output.value = value;
+
+        if (resetAfterOperation) {
+            output.value = value
+
         } else {
             output.value += value;
         }
     });
 });
-
-equal.addEventListener('click', function() {
-    if (!options) {
-        return;
-    }
-    if (options === 'subtract') {
-        output.value = substract(firstNumber, secondNumber);
-    }
-    if (options === 'multiply') {
-        output.value = firstNumber + secondNumber;
-    }
-    if (options === 'substruct') {
-        output.value = firstNumber + secondNumber;
-    }
-    if (options === 'sum') {
-        output.value = firstNumber + secondNumber;
-    }
+clear.addEventListener('click', () => {
+    output.value = '';
 })
-console.log(equal);
-
 
 // document.getElementById('output').innerHTML + result;
