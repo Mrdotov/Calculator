@@ -46,3 +46,9 @@ body {
     color: #ffffff;
     border: 2px solid #ffffff;
 }
+
+.equal {
+    margin-top: 4px;
+    width: 63px;
+    height: 25px;
+}
