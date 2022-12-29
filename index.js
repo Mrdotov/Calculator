@@ -9,30 +9,43 @@ const input = document.querySelector('#output');
 const equal = document.querySelector('.equal');
 const clear = document.querySelector('.clear')
 
-let resetAfterOperation = false
-    //Проверка на роботу кнопок
-options.forEach(option => {
-    option.addEventListener('click', function() {
-        firstNumber = Number.parseInt(output.value)
-        option = event.currentTarget.dataset.action;
-        resetAfterOperation = true;
-
-    });
-});
+//button and opiton
 buttons.forEach(button => {
     button.addEventListener('click', function() {
         let value = event.currentTarget.textContent
 
         if (resetAfterOperation) {
-            output.value = value
+            input.value = value;
 
         } else {
-            output.value += value;
+            input.value += value;
         }
     });
 });
-clear.addEventListener('click', () => {
-    output.value = '';
-})
+let resetAfterOperation = false
 
-// document.getElementById('output').innerHTML + result;
+options.forEach(option => {
+    option.addEventListener('click', function() {
+        firstNumber = Number.parseInt(input.value)
+        option = event.currentTarget.dataset.action;
+        resetAfterOperation = true;
+
+
+    });
+});
+
+// function sum(a, b) {
+
+// }
+// sum()
+
+
+//Взаимоедействие с кнопками
+
+// clear.addEventListener('click', () => {
+//     output.value = '';
+//     return;
+// })
+// function result() {
+//     input.innerHTML = result;
+// }
