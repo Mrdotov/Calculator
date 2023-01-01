@@ -3,36 +3,30 @@
 // . - для класса
 // # для id
 
-const buttons = document.querySelectorAll('.number');
-const options = document.querySelectorAll('.options');
 const input = document.querySelector('#output');
+const numbers = document.querySelectorAll('.number');
+const options = document.querySelectorAll('.options');
 const equal = document.querySelector('.equal');
 const clear = document.querySelector('.clear')
 
-let resetAfterOperation = false
     //Проверка на роботу кнопок
 options.forEach(option => {
-    option.addEventListener('click', function() {
-        firstNumber = Number.parseInt(output.value)
-        option = event.currentTarget.dataset.action;
-        resetAfterOperation = true;
-
+    option.addEventListener('click', ({ target }) => {
+        const value = target.dataset.action
+        output.value += value
     });
 });
-buttons.forEach(button => {
-    button.addEventListener('click', function() {
-        let value = event.currentTarget.textContent
-
-        if (resetAfterOperation) {
-            output.value = value
-
-        } else {
-            output.value += value;
-        }
+numbers.forEach(number => {
+    number.addEventListener('click', ({ target }) => {
+        const value = target.dataset.num
+        output.value += value
     });
 });
 clear.addEventListener('click', () => {
     output.value = '';
 })
+equal.addEventListener('click', () => {
+    output.value = eval(output.value)
+});
 
 // document.getElementById('output').innerHTML + result;
