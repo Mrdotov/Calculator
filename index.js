@@ -3,49 +3,34 @@
 // . - для класса
 // # для id
 
-const buttons = document.querySelectorAll('.number');
-const options = document.querySelectorAll('.options');
 const input = document.querySelector('#output');
 const equal = document.querySelector('.equal');
-const clear = document.querySelector('.clear')
+const numbers = document.querySelectorAll('.number');
+const options = document.querySelectorAll('.options');
+const clear = document.querySelector('.clear');
 
-//button and opiton
-buttons.forEach(button => {
-    button.addEventListener('click', function() {
-        let value = event.currentTarget.textContent
 
-        if (resetAfterOperation) {
-            input.value = value;
-
-        } else {
-            input.value += value;
-        }
+numbers.forEach(number => {
+    number.addEventListener('click', ({ target }) => {
+        const value = target.dataset.num
+        output.value += value
     });
 });
-let resetAfterOperation = false
 
 options.forEach(option => {
-    option.addEventListener('click', function() {
-        firstNumber = Number.parseInt(input.value)
-        option = event.currentTarget.dataset.action;
-        resetAfterOperation = true;
-
-
+    option.addEventListener('click', ({ target }) => {
+        const value = target.dataset.action
+        output.value += value
     });
 });
 
-// function sum(a, b) {
-
-// }
-// sum()
 
 
-//Взаимоедействие с кнопками
 
-// clear.addEventListener('click', () => {
-//     output.value = '';
-//     return;
-// })
-// function result() {
-//     input.innerHTML = result;
-// }
+clear.addEventListener('click', () => {
+    input.value = '';
+
+})
+equal.addEventListener('click', () => {
+    output.value = eval(output.value)
+});
